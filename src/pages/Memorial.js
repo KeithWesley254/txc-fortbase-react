@@ -14,7 +14,13 @@ const Memorial = () => {
   }
 
   useEffect(() => {
-    fetch(`/api/memorials`)
+    const token = JSON.parse(localStorage.getItem("token"));
+    
+    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/memorials`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(r => r.json())
     .then(data => setAllLegends(data))
   }, [])

@@ -23,13 +23,25 @@ const Soldiers = () => {
   }
 
   useEffect(() => {
-    fetch(`/api/major_generals`)
+    const token = JSON.parse(localStorage.getItem("token"));
+
+    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/major_generals`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(r => r.json())
     .then(data => setAllGenerals(data))
   }, [])
 
   useEffect(() => {
-    fetch(`/api/soldiers`)
+    const token = JSON.parse(localStorage.getItem("token"));
+
+    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/soldiers`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(r => r.json())
     .then(data => setAllSoldiers(data))
   }, [])

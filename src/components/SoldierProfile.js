@@ -23,7 +23,7 @@ const SoldierProfile = ({ oneSoldier }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch("/api/fan_messages", {
+    fetch("http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/fan_messages", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

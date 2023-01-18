@@ -7,23 +7,40 @@ import Platoons from '../components/Platoons';
 const Hero = () => {
   const [techStories, setTechStories] = useState([]);
   const [communityImpact, setCommunityImpact] = useState([]);
-  const [randomIndexCommunity, setRandomIndex] = useState();
   const [platoons, setPlatoons] = useState([])
 
   useEffect(() => {
-    fetch(`/api/technologies`)
+    const token = JSON.parse(localStorage.getItem("token"));
+
+    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/technologies`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(r => r.json())
     .then(data => setTechStories(data))
   }, [])
 
   useEffect(() => {
-    fetch(`/api/community_impacts`)
+    const token = JSON.parse(localStorage.getItem("token"));
+
+    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/community_impacts`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(r => r.json())
     .then(data => setCommunityImpact(data))
   }, [])
 
   useEffect(() => {
-    fetch(`/api/platoons`)
+    const token = JSON.parse(localStorage.getItem("token"));
+
+    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/platoons`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(r => r.json())
     .then(data => setPlatoons(data))
   }, [])

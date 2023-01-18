@@ -20,24 +20,24 @@ const UserProfile = () => {
   const navigate = useNavigate();
 
   function handleUpdateUser() {
-    fetch(`/api/one_user_profiles/${user.id}`, {
-    method: "PATCH",
+    const token = JSON.parse(localStorage.getItem("token"));
+
+    const data = new FormData();
+
+    Object.keys(formData).forEach(key => {
+      data.append(key, formData[key])
+    });
+
+    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/one_user_profiles/${user.id}`, {
     headers: {
-      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({
-      full_name: formData.full_name,
-      gender: formData.gender,
-      age: formData.age,
-      bio: formData.bio,
-      interests: formData.interests,
-      image_upload: formData.image_upload,
-      favourite_military_branch: formData.favourite_military_branch
-    }),
+    method: "PATCH",
+    body: data
   }).then((res) => {
     if (res.ok) {
       res.json().then((data) => {
-        setUserProfile(data.one_user_profile)
+        setUserProfile(data)
         navigate('/homepage')
         window.location.reload();
       });
@@ -49,8 +49,13 @@ const UserProfile = () => {
   }
 
   function deleteProfile(id){
-    fetch(`/api/users/${id}`,{
-        method: "DELETE",
+    const token = JSON.parse(localStorage.getItem("token"));
+
+    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/users/${id}`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      method: "DELETE",
     })
   }
 
@@ -200,7 +205,7 @@ const UserProfile = () => {
                       <InputLabel>Full Name</InputLabel>
                       <OutlinedInput
                         name='full_name'
-                        value={formData.full_name}
+                        defaultValue={userProfile?.full_name}
                         onChange={handleChange}
                         label="Full Name"
                       />
@@ -209,7 +214,7 @@ const UserProfile = () => {
                       <InputLabel>Age</InputLabel>
                       <OutlinedInput
                         name='age'
-                        value={formData.age}
+                        defaultValue={userProfile?.age}
                         onChange={handleChange}
                         label="Age"
                       />
@@ -226,7 +231,7 @@ const UserProfile = () => {
                   <InputLabel>Bio</InputLabel>
                   <OutlinedInput
                     name='bio'
-                    value={formData.bio}
+                    defaultValue={userProfile?.bio}
                     onChange={handleChange}
                     multiline
                     rows={5}
@@ -241,7 +246,7 @@ const UserProfile = () => {
                 <FormControl fullWidth sx={{ mb: 1}}>
                     <RadioGroup
                       name="gender"
-                      value={formData.gender}
+                      defaultValue={userProfile?.gender}
                       onChange={(e) => { 
                         setFormData({...formData, gender: e.target.value})
                       }}
@@ -267,7 +272,7 @@ const UserProfile = () => {
                     <InputLabel>Interests</InputLabel>
                     <OutlinedInput
                       name='interests'
-                      value={formData.interests}
+                      defaultValue={userProfile?.interests}
                       onChange={handleChange}
                       label="Interests"
                     />
@@ -280,7 +285,7 @@ const UserProfile = () => {
                     <InputLabel>Image Upload</InputLabel>
                     <OutlinedInput
                       name='image_upload'
-                      value={formData.image_upload}
+                      defaultValue={userProfile?.image_upload}
                       onChange={handleChange}
                       label="Image Upload"
                     />
@@ -296,7 +301,7 @@ const UserProfile = () => {
                     <InputLabel>Favourite Military Branch</InputLabel>
                     <OutlinedInput
                       name='favourite_military_branch'
-                      value={formData.favourite_military_branch}
+                      defaultValue={userProfile?.favourite_military_branch}
                       onChange={handleChange}
                       label="Favourite Military Branch"
                     />

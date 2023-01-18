@@ -6,7 +6,13 @@ const Technologies = () => {
   const [techStories, setTechStories] = useState([]);
 
   useEffect(() => {
-    fetch(`/api/technologies`)
+    const token = JSON.parse(localStorage.getItem("token"));
+    
+    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/technologies`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(r => r.json())
     .then(data => setTechStories(data))
   }, [])

@@ -10,7 +10,13 @@ const SpecificPlatoon = () => {
   const params = useParams();
 
   useEffect(() => {
-    fetch(`/api/platoons/${params.id}`)
+    const token = JSON.parse(localStorage.getItem("token"));
+    
+    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/platoons/${params.id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(r => {
       if (r.ok) {
         r.json().then((data) => {

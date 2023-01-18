@@ -38,7 +38,7 @@ function App() {
             <Route path='/about-us' element={<AboutUs />}/> 
             <Route path='/soldiers/:id' element={<SpecificSoldier />}/>
             <Route path='/generals/:id' element={<SpecificGeneral />}/>  
-            <Route path='/platoons/:id' element={<SpecificPlatoon />}/>  
+            <Route path='/platoons/:id' element={<SpecificPlatoon />}/> 
           </Routes>
         </main>
         <Footer />

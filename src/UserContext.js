@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import Login from './pages/Login';
 
 const UserInfo = createContext()
 
@@ -11,26 +12,34 @@ export default function UserContext({ children }){
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        fetch("/api/me").then((r) => {
-            if (r.ok) {
-              r.json().then((user) => {
-                setUser(user)
-              });
-            }
-        });
+    // console.log(user)
 
-        if(user?.id){
-            setUserProfile(user?.one_user_profile)
-        }
+    useEffect(() => {
+        const token = JSON.parse(localStorage.getItem("token"));
     
-    }, [user?.id]);
+        fetch("http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/auto_login", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ token }),
+        })
+        .then((r) => {
+        if (r.ok) {
+        r.json().then((user) => {
+          setUser(user)
+          setUserProfile(user.one_user_profile)
+        })
+        }})
+  
+      }, [user?.id]);
 
     function handleSubmitSignUp(e, email, password, passwordConfirmation) {
         e.preventDefault();
         setErrors([]);
         setIsLoading(true);
-        fetch("/api/signup", {
+        fetch("http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/users", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -44,7 +53,8 @@ export default function UserContext({ children }){
         setIsLoading(false);
         if (r.ok) {
             r.json().then((user) => {
-            setUser(user)
+            setUser(user.user);
+            window.localStorage.setItem("token", JSON.stringify(user.jwt));
             navigate('/homepage')
             });
         } else {
@@ -56,7 +66,7 @@ export default function UserContext({ children }){
     function handleSubmitLogin(e, email, password){
         e.preventDefault();
         setIsLoading(true);
-        fetch("/api/login", {
+        fetch("http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -66,7 +76,8 @@ export default function UserContext({ children }){
         setIsLoading(false);
         if (r.ok) {
             r.json().then((user) => {
-            setUser(user)
+            window.localStorage.setItem("token", JSON.stringify(user.jwt));
+            setUser(user.user);
             navigate('/homepage')
             });
         } else {
@@ -76,12 +87,12 @@ export default function UserContext({ children }){
     }
     
     function logOut() {
-        fetch("/api/logout", { method: "DELETE" }).then((r) => {
-            if (r.ok) {
-              setUser(null);
-              navigate('/login')
-            }
-        });
+        setUser(null);
+        setUserProfile(null);
+        window.localStorage.clear();
+        return(
+            <Login />
+        )
     }
 
     return (

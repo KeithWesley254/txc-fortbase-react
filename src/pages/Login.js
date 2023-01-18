@@ -10,7 +10,7 @@ const Login = () => {
   const [loginSlides, setLoginSlides] = useState([]);
 
   useEffect(() => {
-    fetch("/api/login_page_slides")
+    fetch("http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/login_page_slides")
     .then(r => r.json())
     .then(data => {
         setLoginSlides(data)

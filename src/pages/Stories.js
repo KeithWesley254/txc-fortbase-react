@@ -18,13 +18,25 @@ const Stories = () => {
   
   
   useEffect(() => {
-    fetch(`/api/user_comments`)
+    const token = JSON.parse(localStorage.getItem("token"));
+
+    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/user_comments`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(r => r.json())
     .then(data => setComments(data))
   }, []);
 
   useEffect(() => {
-    fetch(`/api/technologies`)
+    const token = JSON.parse(localStorage.getItem("token"));
+
+    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/technologies`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
     .then(r => r.json())
     .then(data => {
       setTechnologies(data)
@@ -51,10 +63,13 @@ const Stories = () => {
   }
 
   function handleSubmit(e) {
+    const token = JSON.parse(localStorage.getItem("token"));
+
     e.preventDefault();
-    fetch("/api/user_comments", {
+    fetch("http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/user_comments", {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
@@ -70,8 +85,13 @@ const Stories = () => {
   }
 
   function deleteComment(id){
-    fetch(`/api/user_comments/${id}`,{
-        method: "DELETE",
+    const token = JSON.parse(localStorage.getItem("token"));
+    
+    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/user_comments/${id}`,{
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      method: "DELETE",
     })
     .then(r => r.json())
     .then(() => {

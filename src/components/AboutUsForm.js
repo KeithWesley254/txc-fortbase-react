@@ -7,17 +7,20 @@ const AboutUsForm = () => {
   const [their_message, setTheirMessage] = useState('')
 
   function handleSubmit(e){
+    const token = JSON.parse(localStorage.getItem("token"));
+
     e.preventDefault();
-    fetch(`/api/client_messages`,{
+    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/client_messages`,{
         method: "POST",
         headers: {
-            "Content-Type": "application/json"
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({ full_name, professional_email, their_message })
     })
-    .then(r => r.json())
-    
-    alert("Message Received!")
+    setFullName('')
+    setProfEmail('')
+    setTheirMessage('')
   }
 
   return (
