@@ -105,7 +105,7 @@ const UserProfile = () => {
                     Email Address
                   </Typography>
                   <Typography variant="body2" component="h2">
-                    {userProfile?.email}
+                    {user?.email}
                   </Typography>
                 </Box>
                <br />
@@ -355,8 +355,8 @@ const UserProfile = () => {
                       color: "#fff",
                     }}
                     onClick={() => {
-                      handleLogoutClick()
                       deleteProfile(user.id)
+                      handleLogoutClick()         
                     }}
                     >
                       DELETE
