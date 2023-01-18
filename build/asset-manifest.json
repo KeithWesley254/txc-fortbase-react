@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.a4ba7f1b.css",
+    "main.js": "/static/js/main.0c6e912c.js",
+    "static/media/our_image.jpg": "/static/media/our_image.21dc0954643ec75aa6a0.jpg",
+    "static/media/logo.jpg": "/static/media/logo.50e46b39c7f51de2094c.jpg",
+    "static/media/memorial.jpeg": "/static/media/memorial.f43d95be4475f0203257.jpeg",
+    "index.html": "/index.html",
+    "main.a4ba7f1b.css.map": "/static/css/main.a4ba7f1b.css.map",
+    "main.0c6e912c.js.map": "/static/js/main.0c6e912c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.a4ba7f1b.css",
+    "static/js/main.0c6e912c.js"
+  ]
+}
