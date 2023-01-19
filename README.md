@@ -8,6 +8,19 @@ with the heroes of the nation. You can get information about the
 latest technologies in the TXC military and public researches.
 Come and Connect
 
+# Technology used
+<ol>
+    <li>React.js</li>
+    <li>Ruby on Rails</li>
+    <li>Postgresql</li>
+</ol>
+<br>
+<br>
+<ol>
+    <li>Material Ui for the frontend</li>
+    <li>JWT for authentication</li>
+</ol>
+
 # User Story:
 <div>
     <ol>
@@ -40,7 +53,15 @@ Come and Connect
 
 # Setup Instructions:
 
-The application requires a user to sign up to access the full website. Features have been explained and some made intuitive for the user.
+<ol>
+    <li>
+    The application requires a user to sign up to access the full website. Features have been explained and some made intuitive for the user.
+    </li>
+    <li>
+    Use image urls for image upload fields as active storage is not active for this application.
+    </li>
+</ol>
+
 <br>
 <br>
 Report any bugs so that they may be fixed in the next versions.
