@@ -38,7 +38,7 @@ const UserProfile = () => {
     if (res.ok) {
       res.json().then((data) => {
         setUserProfile(data)
-        navigate('/homepage')
+        navigate('/')
         window.location.reload();
       });
     }})
