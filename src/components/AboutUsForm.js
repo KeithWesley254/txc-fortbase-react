@@ -10,7 +10,7 @@ const AboutUsForm = () => {
     const token = JSON.parse(localStorage.getItem("token"));
 
     e.preventDefault();
-    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/client_messages`,{
+    fetch(`https://fortbase-api.onrender.com/api/client_messages`,{
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

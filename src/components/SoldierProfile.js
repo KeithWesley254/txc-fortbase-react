@@ -23,7 +23,7 @@ const SoldierProfile = ({ oneSoldier }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    fetch("http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/fan_messages", {
+    fetch("https://fortbase-api.onrender.com/api/fan_messages", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -174,4 +174,4 @@ const SoldierProfile = ({ oneSoldier }) => {
   )
 }
 
-export default SoldierProfile
+export default SoldierProfile;

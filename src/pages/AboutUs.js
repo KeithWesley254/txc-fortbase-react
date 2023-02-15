@@ -20,7 +20,7 @@ const AboutUs = () => {
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token"));
     
-    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/community_impacts`, {
+    fetch(`https://fortbase-api.onrender.com/api/community_impacts`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -32,7 +32,7 @@ const AboutUs = () => {
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token"));
 
-    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/about_us`, {
+    fetch(`https://fortbase-api.onrender.com/api/about_us`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

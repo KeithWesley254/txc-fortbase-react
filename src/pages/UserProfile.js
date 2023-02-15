@@ -28,7 +28,7 @@ const UserProfile = () => {
       data.append(key, formData[key])
     });
 
-    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/one_user_profiles/${user.id}`, {
+    fetch(`https://fortbase-api.onrender.com/api/one_user_profiles/${user.id}`, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -51,7 +51,7 @@ const UserProfile = () => {
   function deleteProfile(id){
     const token = JSON.parse(localStorage.getItem("token"));
 
-    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/users/${id}`,{
+    fetch(`https://fortbase-api.onrender.com/api/users/${id}`,{
       headers: {
         Authorization: `Bearer ${token}`,
       },

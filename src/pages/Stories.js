@@ -20,7 +20,7 @@ const Stories = () => {
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token"));
 
-    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/user_comments`, {
+    fetch(`https://fortbase-api.onrender.com/api/user_comments`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -32,7 +32,7 @@ const Stories = () => {
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token"));
 
-    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/technologies`, {
+    fetch(`https://fortbase-api.onrender.com/api/technologies`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -66,7 +66,7 @@ const Stories = () => {
     const token = JSON.parse(localStorage.getItem("token"));
 
     e.preventDefault();
-    fetch("http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/user_comments", {
+    fetch("https://fortbase-api.onrender.com/api/user_comments", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -87,7 +87,7 @@ const Stories = () => {
   function deleteComment(id){
     const token = JSON.parse(localStorage.getItem("token"));
     
-    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/user_comments/${id}`,{
+    fetch(`https://fortbase-api.onrender.com/api/user_comments/${id}`,{
       headers: {
         Authorization: `Bearer ${token}`,
       },

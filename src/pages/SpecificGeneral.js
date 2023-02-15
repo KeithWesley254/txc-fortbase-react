@@ -12,7 +12,7 @@ const SpecificGeneral = () => {
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token"));
 
-    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/major_generals/${params.id}`, {
+    fetch(`https://fortbase-api.onrender.com/api/major_generals/${params.id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

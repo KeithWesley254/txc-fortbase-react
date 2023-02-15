@@ -8,7 +8,7 @@ const Technologies = () => {
   useEffect(() => {
     const token = JSON.parse(localStorage.getItem("token"));
     
-    fetch(`http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/technologies`, {
+    fetch(`https://fortbase-api.onrender.com/api/technologies`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -110,4 +110,4 @@ const Technologies = () => {
   )
 }
 
-export default Technologies
+export default Technologies;
