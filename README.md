@@ -68,7 +68,7 @@ Report any bugs so that they may be fixed in the next versions.
 
 # Deployment Link:
 
-http://fortbase-react-loadbalancer-1817682004.eu-west-2.elb.amazonaws.com/
+https://txc-fortbase.netlify.app/
 
 # License:
 
