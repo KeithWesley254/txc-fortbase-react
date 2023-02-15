@@ -17,7 +17,7 @@ export default function UserContext({ children }){
     useEffect(() => {
         const token = JSON.parse(localStorage.getItem("token"));
     
-        fetch("http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/auto_login", {
+        fetch("https://fortbase-api.onrender.com/auto_login", {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -39,7 +39,7 @@ export default function UserContext({ children }){
         e.preventDefault();
         setErrors([]);
         setIsLoading(true);
-        fetch("http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/api/users", {
+        fetch("https://fortbase-api.onrender.com/api/users", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export default function UserContext({ children }){
     function handleSubmitLogin(e, email, password){
         e.preventDefault();
         setIsLoading(true);
-        fetch("http://rails-balancer-1623383035.eu-west-2.elb.amazonaws.com/login", {
+        fetch("https://fortbase-api.onrender.com/login", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
